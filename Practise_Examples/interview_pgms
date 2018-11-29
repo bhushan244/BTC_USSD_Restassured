@@ -1,0 +1,1110 @@
+Java Interview Programms:
+1.Program to find the count of the given character without using for loop.
+package string_example;
+public class Count_Given_Char_Without_For_Loop {
+	public static void main(String[] args) {
+		String str = "Hi Hello How Are You Java HHHHH";
+		String find_char = "H";
+		System.out.println(str.length());
+		System.out.println(str.replaceAll(find_char, "").length());
+		System.out.println(str.length() - str.replaceAll(find_char, "").length());
+	}
+}
+2.convert lower case letter to upper case and  vice versa.
+package string_example;
+public class Convert_lower_upper {
+	public static void main(String[] args) {
+		String s = "Hi Hello";
+		String output = "";
+		for (int i = 0; i < s.length(); i++) {
+			if (Character.isLowerCase(s.charAt(i))) {
+				output = output + (s.charAt(i) + "").toUpperCase();
+			} else if (Character.isUpperCase(s.charAt(i))) {
+				output = output + (s.charAt(i) + "").toLowerCase();
+			} else {
+				output = output + s.charAt(i);
+			}
+		}
+	System.out.println(output);
+	System.out.println('A' + 'B');
+	System.out.println("A" + "B" + 'A');
+	System.out.println(1+2+'A' + "B");
+	System.out.println(s.toCharArray().toString());//prints address
+	}
+}
+
+3.Remove Duplicate words
+public class Duplicate_Elements {
+	@Test
+	public void test1() {
+		String[] strArray = { "abc", "def", "mno", "xyz",      				"pqr","xyz", "def" };
+		for (int i = 0; i < strArray.length; i++) {
+			for (int j = i + 1; j < strArray.length; j++) {
+				if (strArray[i].equalsIgnoreCase(strArray[j])  								&& i != j) {
+					System.out.println("repeated words 							are=" + strArray[j]);
+				}
+			}
+		}
+	}
+	@Test
+	public void test2() {
+		String[] strArray = { "abc", "def", "mno", "xyz", "pqr", 					"xyz", "def", "def" };
+		Set<String> s = new HashSet<String>();
+		for (int i = 0; i < strArray.length; i++) {
+			if (!s.add(strArray[i])) {
+				System.out.println("repeated word=" + 						strArray[i]);
+			}
+		}
+		System.out.println("After Removing All Duplicate Elements=" + s);
+	}
+}
+
+4.Extract Middle Character from the String
+package string_example;
+public class Extract_Middle_character {
+	public static void main(String[] args) {
+		String s = "abc";
+		int pos = 0;
+		int len = 0;
+		if (s.length() % 2 == 0) {
+			pos = s.length() / 2 - 1;
+			len = 2;
+		} else {
+			pos = s.length() / 2;
+			len = 1;
+		}
+		System.out.println("middle Character is " + 				s.substring(pos, pos+len));
+	}
+}
+
+5.Find All the Substring in a string
+package string_example;
+import java.util.ArrayList;
+public class Find_All_Substring {
+	// all substring :“a”, “b”,”b”, “ab”, “bb”, “abb”
+	public static void main(String[] args) {
+		String str = "abcd";
+		for (int i = 0; i < str.length(); i++) {
+			for (int j = i + 1; j <= str.length(); j++) {
+				System.out.println(str.substring(i, j));
+			}
+		}
+		ArrayList<String> a = new ArrayList<String>();
+		a.ensureCapacity(6);
+	}
+
+}
+6.Convert Each Words First Letter to Upper Case
+package string_example;
+public class First_Letter_Word_UpperCase {
+	public static void main(String[] args) {
+		String str = "we are looking for good writers.";
+		System.out.println("Input length=" + str.length());
+		String out_str = "";
+		String[] output = str.split("\\s");
+		for (String s : output) {
+			out_str = out_str + 	Character.toUpperCase(s.charAt(0)) + s.substring(1) + " ";
+		}
+		out_str = out_str.substring(0,out_str.length()-1);
+		System.out.println(out_str);
+		System.out.println("output length=" + out_str.length());
+	}
+}
+7.Find the last index of the given character
+package string_example;
+public class Last_Index_Count {
+	public static void main(String[] args) {
+		String str = "IncludeHelp";
+		char ch = 'l';
+		System.out.println(str.lastIndexOf(ch));
+		int index = 0;
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == ch) {
+				index=i;
+			}
+		}
+		System.out.println(index);
+	}
+}
+8.Find the longest Substring substring (No character is repeated in the substring)
+package string_example;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import org.testng.annotations.Test;
+public class Longest_Substring {
+	public static void main(String[] args) {
+		String str = "javaconceptoftheday";
+		String substr = "";
+		boolean flag = true;
+		for (int i = 0; i < str.length(); i++) {
+			flag = true;
+			for (int j = i + 1; j < str.length(); j++) {
+				if (str.charAt(i) == str.charAt(j)) {
+					substr = "";
+					flag = false;
+					break;
+				}
+			}
+			if (flag == true)
+				substr += str.charAt(i);
+		}
+		System.out.println("Longest Substring is " + substr);
+	}
+
+	@Test
+	public void test1() {
+		String str = "javaconceptoftheday";
+		char[] ch = str.toCharArray();
+		Map<Character, Integer> m = new LinkedHashMap<Character, Integer>();
+		for (int i = 0; i < ch.length; i++) {
+			char c = ch[i];
+			if (m.containsKey(c)) {
+				i = m.get(c);
+				m.clear();
+			} else {
+				m.put(c, i);
+			}
+		}
+		System.out.println(m.keySet());
+	}
+}
+9.% of upper and lower case letters
+package string_example;
+import java.text.DecimalFormat;
+public class Percentage_Upper_Lower_SpecialCharacter_Digit {
+	public static void main(String[] args) {
+		String str = "Tiger Runs @ The Speed Of 100 km/hour.";
+		int count_upper = 0;
+		int count_lower = 0;
+		int count_digit = 0;
+		int count_specialch = 0;
+		int str_length = str.length();
+		for (int i = 0; i < str.length(); i++) {
+			char ch = str.charAt(i);
+			if (Character.isUpperCase(ch)) {
+				count_upper++;
+			} else if (Character.isLowerCase(ch)) {
+				count_lower++;
+			} else if (Character.isDigit(ch)) {
+				count_digit++;
+			} else {
+				count_specialch++;
+			}
+		}
+		System.out.println("UpperCase %=" + calc_perc(str_length, count_upper));
+		System.out.println("LowerCase %=" + calc_perc(str_length, count_lower));
+		System.out.println("Digit %=" + calc_perc(str_length, count_digit));
+		System.out.println("Special Character %=" + calc_perc(str_length, count_specialch));
+	}
+	static String calc_perc(int length, int count) {
+		double res = 0.0;
+		res = ((100.0 * count) / length);
+		DecimalFormat dc = new DecimalFormat("##.##");
+		return dc.format(res);
+	}
+}
+
+10.Find Duplicate Records
+package string_example;
+import java.util.HashSet;
+import java.util.Set;
+public class Print_First_Duplicate_Character {
+	public static void main(String[] args) {
+		String s = "Hello How Are You";
+		s = s.replaceAll("\\s", "");
+		s = s.toLowerCase();
+		Set<Character> set = new HashSet<Character>();
+
+		char[] ch = s.toCharArray();
+		for (Character a : ch) {
+			if (!set.add(a)) {
+				System.out.println("First Duplicated Character is " + a);
+				break;
+			}
+		}
+	}
+}
+11.Reverse Each Word
+package string_example;
+public class Reverse_Each_Word {
+	public static void main(String[] args) {
+		String str = "Java Concept Of The Day";
+		String rev = "";
+		String[] str_arr = str.split(" ");
+		for (int i = 0; i < str_arr.length; i++) {
+			for (int j = str_arr[i].length() - 1; j >= 0; j--) {
+				rev = rev + str_arr[i].charAt(j);
+			}
+			rev = rev + " ";
+		}
+		System.out.println(rev);
+	}
+}
+12.Reverse word retaining space
+package string_example;
+import org.testng.annotations.Test;
+public class Reverse_Retaining_Space_position {
+	@Test
+	public void test2() {
+		String rev = "";
+		// String str = "I Am Not String";// output:g ni rtS toNmAI
+		//String str = "JAVA JSP ANDROID";// DIOR DNA PSJAVAJ
+		String str = "1 22 333 4444 55555";// 5 55 554 4443 33221
+		int count = str.length() - 1;
+		for (int i = 0; i <= str.length() - 1; i++) {
+			if (str.charAt(i) == ' ') {
+				rev = rev + " ";
+			} else {
+				if (str.charAt(count) == ' ') {
+					count--;
+				}
+				rev = rev + str.charAt(count);
+				count--;
+			}
+
+		}
+		System.out.println(rev);
+	}
+}
+13.String Reverse with Recursion
+package string_example;
+public class Reverse_String_Recursion {
+	static String rev = "";
+	public static void main(String[] args) {
+		String s = "Hello world Hi";
+		System.out.println(reverse(s));
+	}
+	static String reverse(String s) {
+		if (s.length() == 1) {
+			return s;
+		}
+		rev = rev + s.charAt(s.length() - 1) + reverse(s.substring(0, s.length() - 1));
+		return rev;
+	}
+}
+
+14.Reverse String without In-built function
+package string_example;
+public class Reverse_String {
+	public static void main(String[] args) {
+		String s = "World";
+		// int l = s.length();
+		for (int i = s.length() - 1; i >= 0; i--) {
+			s = s + s.charAt(i);
+		}
+		System.out.println(s.substring(s.length() / 2));
+	}
+}
+15.String Immutable Example
+package string_example;
+
+public class String_Memory {
+	public static void main(String[] args) {
+		String s1 = "abc";
+		String s2 = "abc";
+		String s3 = new String("abc");
+		System.out.println(s1 == s2);// true --> string are created using	// literals and
+										// pointing to same memory location
+		System.out.println(s1 == s3);// false-->Strings are not pointing to same
+									// memory location
+		System.out.println(s1.concat("Hi"));// Strings are immutable
+		System.out.println(s1);// Strings are immutable
+	}
+}
+15.String Swaping 
+package string_example;
+public class String_Swaping {
+	public static void main(String[] args) {
+		String s1 = "java";
+		String s2 = "selenium";
+		s1 = s1 + s2;
+		s2 = s1.substring(0, (s1.length() - s2.length()));
+		System.out.println("s2=" + s2);
+		System.out.println("s1=" + (s1.substring(s2.length())));
+	}
+}
+16.Program to count 'H' in the given String
+package regular_expression;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+//Program t count number of 'H' in a given string
+public class Example1 {
+	public static void main(String[] args) {
+		String str = "Hi Hello how are you";
+		String ptrn = "H";
+		int count = 0;
+		Pattern p = Pattern.compile(ptrn, Pattern.CASE_INSENSITIVE);
+		Matcher m = p.matcher(str);
+		while (m.find()) {
+			count++;
+		}
+		System.out.println(count);
+		boolean b = Pattern.matches("a*b", "aaaaab");
+		 System.out.println(Pattern.matches("a*b","aaaaab"));//in between a and b --a can come any num of times
+		System.out.println(b);
+	}
+}
+public class Example2 {
+	public static void main(String[] args) {
+		String str = "Hi Hello This is Java Hih how are you";
+		int count = 0;
+		Pattern p = Pattern.compile("hi", Pattern.CASE_INSENSITIVE);
+		Matcher m = p.matcher(str);
+		while (m.find()) {
+			count++;
+		}
+		System.out.println(count);
+	}
+}
+17.RegExp Examples
+package regular_expression;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.testng.annotations.Test;
+//? quantifier  
+public class Example3 {
+	@Test
+	public void test1() {
+		String str = "has";
+		Pattern p=Pattern.compile(".a.");
+		Matcher m=p.matcher(str);
+		System.out.println(m.matches());//true
+		
+		System.out.println("1--->"+Pattern.compile(".a.").matcher(str).matches());//true
+		
+		System.out.println("2--->"+Pattern.matches(".a.", str));//true
+		
+		System.out.println("3--->"+Pattern.matches("..s","mas"));//2nd character is 's'
+		
+		System.out.println("4--->"+Pattern.matches("[amn]", "ajhfd"));//false since string must contains either 'a' or 'm' or 'n'
+		System.out.println("5--->"+Pattern.matches("[amn]?", ""));//true 'a','m','n' occurs once or not at all
+		System.out.println("6--->"+Pattern.matches("[amn]?", "aaa"));//false 'a' is displaying more than once
+		
+		System.out.println("7--->"+Pattern.matches("[amn]", "a"));//true string contains a
+		System.out.println("8--->"+Pattern.matches("[amn]", "amna"));//false string contains 'a' two times.
+	
+		System.out.println("9--->"+Pattern.matches("[amn]?", "mna"));//false (a or m or n must come one time or not)  
+		System.out.println("10--->"+Pattern.matches("[amn]?", "sfrym"));//false (a or m or n must come one time or not)"  here other letters are there with a or m or n
+		System.out.println("11--->"+Pattern.matches("[amn]?", "am"));//false (a or m or n must come one time)  
+		
+	}
+		@Test
+	public void test2(){
+		System.out.println("+ quantifier ....");  //occurs once or more times
+		System.out.println(Pattern.matches("[amn]+","aaa"));//true a comes more than once
+		System.out.println(Pattern.matches("[amn]+","aaammmnnn"));//true (a or m or n comes more than once)
+		System.out.println(Pattern.matches("[amn]+", "aazzta"));//false (z and t are not matching pattern) 
+		System.out.println(Pattern.matches("[amn]+", ""));//false (a or m or n must comes atleast once) 
+	}
+	@Test
+	public void test3(){
+		System.out.println("* quantifier ....");  //  occurs zero or more times
+		System.out.println(Pattern.matches("[amn]*", "ammmna"));//true (a or m or n may come zero or more times)
+	}
+}
+18.RegExp Example
+package regular_expression;
+
+import java.util.regex.Pattern;
+
+import org.testng.annotations.Test;
+
+public class Example4 {
+	@Test
+	public void test1() {
+		System.out.println(Pattern.matches("\\d", "2"));// true (digit and comes once)
+		System.out.println(Pattern.matches("\\d", "44"));//false (digit but comes more than once)  
+		System.out.println(Pattern.matches("\\d", "abc"));//false (non-digit)  
+		System.out.println(Pattern.matches("\\d", "323abc"));//false (digit and char) 
+		System.out.println(Pattern.matches("\\d*", "12345679"));//true (digit and may come 0 or more times)
+	}
+	
+	@Test
+	public void test2(){
+		System.out.println(Pattern.matches("\\D", "abc"));//false (non-digit but comes more than once)  
+		System.out.println(Pattern.matches("\\D", "1"));//false (digit)  
+		System.out.println(Pattern.matches("\\D", "4443"));//false (digit)  
+		System.out.println(Pattern.matches("\\D", "323abc"));//false (digit and char)  
+		System.out.println(Pattern.matches("\\D", "m"));//true (non-digit and comes once) 
+		System.out.println(Pattern.matches("\\D*", "mak"));//true (non-digit and may come 0 or more times)  
+	}
+}
+18.Create a regular expression that accepts alphanumeric characters only.  Its length must be six characters long only.
+package regular_expression;
+import java.util.regex.Pattern;
+/*Create a regular expression that accepts alphanumeric characters only.  
+Its length must be six characters long only.*/
+public class Example5 {
+	public static void main(String[] args) {
+		System.out.println(Pattern.matches("[0-9a-zA-Z]{6}", "Srila1"));//true
+		System.out.println(Pattern.matches("[0-9a-zA-Z]{6}", "123456"));//true
+		System.out.println(Pattern.matches("[0-9a-zA-Z]{6}", "ghhddh"));//true
+		System.out.println(Pattern.matches("[0-9a-zA-Z]{6}", "12365ghg456"));//false
+		System.out.println(Pattern.matches("[0-9a-zA-Z]{6}", "%^"));//false
+	}
+}
+19.Create a regular expression that accepts 10 digit numeric characters starting with 7, 8 or 9 only.
+package regular_expression;
+import java.util.regex.Pattern;
+/*Create a regular expression that accepts 10 digit numeric characters 
+starting with 7, 8 or 9 only.*/
+public class Example6 {
+	public static void main(String[] args) {
+		System.out.println(Pattern.matches("[789]{1}[0-9]{9}", "7894561230"));// true
+		System.out.println(Pattern.matches("[789][0-9]{9}", "8894561230"));// true
+
+		System.out.println(Pattern.matches("[789]{1}\\d{9}", "9894561230"));
+	}
+}
+20.extract all the numbers into an array of integers
+package regular_expression;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.testng.annotations.Test;
+public class Example7 {
+	// extract all the numbers into an array of integers
+	@Test
+	public void test1() {
+		List<Integer> list = new ArrayList<Integer>();
+		String str = "Hi 123 6 Hello 78 1??";
+		// Pattern p = Pattern.compile("\\d+");//output:[123, 6, 78, 1]
+		Pattern p = Pattern.compile("\\d");// output:[1, 2, 3, 6, 7, 8, 1]
+		Matcher m = p.matcher(str);
+		while (m.find()) {
+			list.add(Integer.parseInt(m.group()));
+		}
+		System.out.println(list);
+	}
+}
+21.String Contains num or not
+package regular_expression;
+import java.util.regex.Pattern;
+//String contains number or not
+public class Example8 {
+	public static void main(String[] args) {
+		String str = "756";
+		// Pattern p = Pattern.compile("\\d");
+		if (Pattern.matches("\\d+", str)) {
+			System.out.println("Given String is number");
+		} else {
+			System.out.println("Given string is not number");
+		}
+	}
+}
+22.String ends with min 2 digit
+package regular_expression;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.testng.annotations.Test;
+//String ends with minimum 2 digit
+public class Example9 {
+	@Test
+	public void test1() {
+		String input = "Hi Hello this is java 180";
+		Pattern p=Pattern.compile("\\d{2}$");
+		Matcher m=p.matcher(input);
+		
+		if (m.find()) {
+			System.out.println("String ends with 2 digit");
+		} else {
+			System.out.println("String does not ends with 2 numbers");
+		}
+	}
+}
+23.How To Reverse And Add A Number Until You Get A Palindrome?
+package general;
+//How To Reverse And Add A Number Until You Get A Palindrome?
+public class Add_Till_Num_Palindrome {
+	public static void main(String[] args) {
+		add_till_palindrome(7325);
+	}
+	public static void add_till_palindrome(int num) {
+		boolean flag = true;
+		while (flag) {
+			int rev = reverse(num);
+			if (num == rev) {
+				System.out.println("Numbers are palindrome at" + num + " and " + rev);
+				flag = true;
+				break;
+			} else {
+				num = num + rev;
+			}
+		}
+	}
+	public static int reverse(int num) {
+		int rev = 0;
+		while (num != 0) {
+			rev = rev * 10 + (num % 10);
+			num = num / 10;
+		}
+		return rev;
+	}
+}
+24.Balanced Paranthesis
+package general;
+import java.util.Stack;
+public class Balanced_Paranthesis {
+	public static void main(String[] args) {
+		boolean flag = true;
+		String s = "[[[";
+		char pc = 0;
+		Stack<Character> st = new Stack<Character>();
+		char[] ch = s.toCharArray();
+		for (char c : ch) {
+			if (c == '(' || c == '{' || c == '[') {
+				st.push(c);
+			} else {
+				if (c == ')') {
+					pc = '(';
+				}
+
+				else if (c == '}') {
+					pc = '{';
+				} else if (c == ']') {
+					pc = '[';
+				}
+
+				if (pc != st.pop()) {
+					flag = false;
+					break;
+				}
+
+			}
+		}
+		if (!st.isEmpty()) {
+			flag = false;
+		}
+		if (flag == true)
+			System.out.println("Balanced");
+		else
+			System.out.println("Unbalanced");
+	}
+}
+25.How To Check If Number Belongs To Fibonacci Series Or Not?
+package general;
+import java.util.Scanner;
+public class Fibonacy_Or_Not {
+	// How To Check If Number Belongs To Fibonacci Series Or Not?
+	public static void main(String[] args) {
+		System.out.println("Enter  Number");
+		Scanner s = new Scanner(System.in);
+		int num = s.nextInt();
+		int f_num = 0;
+		int s_num = 1;
+		int t_num = 0;
+		while (t_num < num) {
+			t_num = f_num + s_num;
+			f_num = s_num;
+			s_num = t_num;
+		}
+		if (t_num == num) {
+			System.out.println("number belongs to fibonacy series");
+		} else {
+			System.out.println("number does not belong to fibonacy series");
+		}
+	}
+}
+26.Fibonacy Series
+package general;
+public class Fibonacy_Series {
+	public static void main(String[] args) {
+		int[] a = new int[10];
+		a[0] = 0;
+		a[1] = 1;
+		for (int i = 2; i < 10; i++) {
+			a[i] = a[i - 1] + a[i - 2];
+		}
+		for (int i : a) {
+			System.out.println(i);
+		}
+	}
+}
+27.You have got a range of numbers between 1 to N, where one of the number is repeated. You need to write a program to find out the duplicate number.
+package general;
+public class Find_Duplicate {
+	public static void main(String[] args) {
+		int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11, 12 };// 1 to N,
+		int size = arr.length - 1;
+		int sum = 0;
+		for (int i = 0; i < arr.length; i++) {
+			sum = sum + arr[i];
+		}
+		int duplicate = sum - (size * (size + 1) / 2);
+		System.out.println(duplicate);
+	}
+}
+28.If ‘n‘ is the positive number and ‘a‘ is an array of integers of length n-1 containing elements from  1 to n. Then find the missing number in ‘a’ in the range from 1 to n. Occurrence of each element is only once. If n = 8, then array ‘a’ will have 7 elements in the range from 1 to 8. For example {1, 4, 5, 3, 7, 8, 6}. One number will be missing in ‘a’ (2 in this case). You have to find out that missing number.
+public class Find_Missing_Number {
+	public static void main(String[] args) {
+		int highest_num = 10;
+		int sum_highest_num = highest_num * (highest_num + 1) /2;
+		int[] arr = { 1, 4, 5, 3, 7, 2, 6,8,10 };
+		int sum = 0;
+		for (int i = 0; i < arr.length; i++) {
+			sum += arr[i];
+		}
+		int mssing_num = sum_highest_num - sum;
+		System.out.println(mssing_num);
+	}
+}
+29. You are given an array of numbers. Find out the array index or position where sum of numbers preceeding the index is equals to sum of numbers succeeding the index.
+public static void main(String[] args) {
+		int[] num = {0,4, 4,3, 5};
+		int sum = 0;
+		for (int i = 0; i < num.length; i++) {
+			sum += num[i];
+			int sum_ = 0;
+			for (int j = i + 1; j < num.length; j++) {
+				sum_ += num[j];
+			}
+			if (sum == sum_) {
+				System.out.println("Sum Index Matching at the index is=" + i);
+				break;
+			}
+				}
+
+		}
+	}
+30.
+
+package general;
+public class Largest_Num_Less_Than_Given_Num {
+	public static void main(String[] args) {
+		int num =548624;// 123;
+		getMaxNum(num,8);
+	}
+	public static void getMaxNum(int num, int digit) {
+		int num1 = num;
+		int num2 = num1;
+		boolean flag = true;
+		while (flag) {
+			int count = 0;
+			num2 = num1;
+			while (num2 != 0) {
+				if (num2 % 10 == digit) {
+					num2--;
+					count++;
+					break;
+				}
+				num2 = num2 / 10;
+			}
+			if (count == 0) {
+				flag = false;
+			} else
+				num1 = num1 - 1;
+		}
+		System.out.println(num1);
+	}
+}
+31.Check whether given number is power of 2 or not
+public class Number_Is_Power_Of_two {
+	public static void main(String[] args) {
+		int[] num = { 2, 4, 6, 8, 10, 12, 16 };
+		for (int i : num) {
+			if (isPowerOfTwo(i)) {
+				System.out.println(i + " is power of 2");
+			} else {
+				System.out.println(i + " is not power of 2");
+			}
+		}
+	}
+	public static boolean isPowerOfTwo(int num) {
+		int square = 2;
+		while (num >= square) {
+			if (num == square) {
+				return true;
+			}
+			square *= 2;
+		}
+		return false;
+	}
+}
+32.Prime Num
+package general;
+
+import java.util.Scanner;
+
+public class PrimeNumber {
+	public static void main(String[] args) {
+		boolean flag = true;
+		System.out.println("Enter a number");
+		Scanner s = new Scanner(System.in);
+		int input = s.nextInt();
+		if (input == 1 || input == 2 || input == 3) {
+			System.out.println(input + " is prime");
+		} else {
+			for (int i = 2; i <= input / 2; i++) {
+				if (input % i == 0) {
+					flag = false;
+					System.out.println("Not Prime");
+					break;
+				}
+			}
+		}
+		if (flag == true) {
+			System.out.println("Prime");
+		}
+	}
+}
+33.File Operations
+package file_operation;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class File_Input_Output {
+	public static void main(String[] args) throws IOException {
+		String str = "Hi Hello Java";
+		FileOutputStream fo = new FileOutputStream("File_Operation/Example.txt");/* if file is not present it will create the file.*/
+		byte[] b = str.getBytes();
+		fo.write(b);// file output will except byte array as input
+		fo.close();
+		FileInputStream f = new FileInputStream("File_Operation/Example.txt");
+		int i = 0;
+		while ((i = f.read()) != -1) {
+			System.out.print((char) i);
+		}
+	}
+}
+
+34.File Operations
+package file_operation;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+public class File_Read_Write {
+	public static void main(String[] args) throws IOException {
+		String str = "Hi Hello How are you";
+		FileWriter f = new FileWriter("File_operation/output.txt");
+		f.write(str);
+		// or
+		for (int i = 0; i < str.length(); i++) {
+			f.write(str.charAt(i));
+		}
+		f.close();
+		FileReader f1 = new FileReader("File_operation/output.txt");
+		int ch;
+		while ((ch = f1.read()) != -1) {
+			System.out.print((char) ch);
+		}
+	}
+}
+34.Collection Custom Sort
+package collections_examples;
+
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+//sort the map objects in descending order of the key
+import java.util.TreeMap;
+
+public class Custom_Sort_Map {
+	public static void main(String[] args) {
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		map.put(101, "john");
+		map.put(185, "rack");
+		map.put(220, "dim");
+		map.put(111, "lor");
+		map.put(91, "khan");
+		map.put(78, "paran");
+		System.out.println("Unsorted Map=" + map);
+		TreeMap<Integer, String> tm = new TreeMap<Integer, String>(new Comparator<Integer>() {
+		@Override
+			public int compare(Integer o1, Integer o2) {
+				return o2.compareTo(o1);
+			}
+		});
+		tm.putAll(map);
+		System.out.println("Sorted Map by key " + tm);
+		tm.putAll(map);
+		System.out.println("Sorted Map is " + tm);
+		List<Map.Entry<Integer, String>> list = new LinkedList<Map.Entry<Integer, String>>(map.entrySet());
+	}
+}
+35.Implement Array List
+package collections_examples;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+public class Implement_ArrayList {
+	private Object[] element;
+	private static final int INITIAL_CAPACITY = 10;
+	private int capacity = 0;
+	public Implement_ArrayList() {
+		element = new Object[INITIAL_CAPACITY];
+	}
+	public int size() {
+		return capacity;
+	}
+	private void increaseListSize() {
+		element = Arrays.copyOf(element, element.length * 2);
+	}
+	public void add(Object ele) {
+		if (element.length - capacity <= 5) {
+			increaseListSize();
+		}
+		element[capacity++] = ele;
+	}
+	public Object get(int index) {
+		if (index < capacity) {
+			return element[index];
+		} else {
+			throw new ArrayIndexOutOfBoundsException();
+		}
+	}
+	public Object remove(int index) {
+		if (index < capacity) {
+			Object obj = element[index];
+			int tmp = index;
+			element[tmp] = null;
+			while (tmp < capacity) {
+				element[tmp] = element[index + 1];
+				element[tmp + 1] = null;
+				tmp++;
+			}
+			capacity--;
+			return obj;
+		} else {
+			throw new ArrayIndexOutOfBoundsException();
+		}
+	}
+	public static void main(String[] args) {
+		Implement_ArrayList al = new Implement_ArrayList();
+		al.add(12);
+		al.add(13);
+		al.add(14);
+		al.add(15);
+		System.out.println(al.size());
+		System.out.println(al.get(3));
+		System.out.println(al.remove(1));
+	}
+}
+36.Java Program To Find All Pairs Of Elements In An Array Whose Sum Is Equal To A Given Number :
+package array_examples;
+//Java Program To Find All Pairs Of Elements In An Array Whose Sum Is Equal To A Given Number :
+public class Add_Num {
+	public static void main(String[] args) {
+		// int[] num = { 4, 6, 5, -10, 8, 5, 20 };
+		int[] num = { 4, -5, 9, 11, 25, 13, 12, 8 };
+		add_num(num, 20);
+	}
+	public static void add_num(int[] arr, int sum) {
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				if (i != j && (arr[i] + arr[j] == sum)) {
+					System.out.println(arr[i] + " + " + arr[j] + " = " + (arr[i] + arr[j]));
+				}
+			}
+		}
+	}
+}
+37.Bubble Sort
+@Test
+	public void test1() {
+		int[] arr = { 100, 20, 15, 30, 5, 75, 40 };
+		int temp = 0;
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < (arr.length - 1) - i; j++) {
+				if (arr[j] > arr[j + 1]) {
+					temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+		for (int i : arr) {
+			System.out.println(i);
+		}
+	}
+}
+38.find the msissing numbers in duplicated array of 1 to N-1
+public class Missing_Number_Duplicated_Array {
+	public static void main(String[] args) {
+		int[] num = { 1, 1, 2, 4, 5, 7, 8, 8, 5, 10 };
+		int[] arr = new int[num.length + 1];
+		for (int i : num) {
+			arr[i] = 1;
+		}
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i] == 0)
+				System.out.println("Msissing Number is " +i);
+		}
+	}
+}
+39.programm to move all zeros to the end of the array.
+package array_examples;
+import org.testng.annotations.Test;
+public class Move_Zero_End {
+	public static void main(String[] args) {
+		int[] arr = { 14, 0, 5, 2, 0, 3, 0 };
+		int count = 0;
+		int j = 0;
+		int[] output = new int[arr.length];
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] != 0) {
+				output[j++] = arr[i];
+				count++;
+			}
+		}
+		for (int i = output.length - count + 1; i< output.length; i++) {
+			output[i] = 0;
+		}
+		for (int i : output) {
+			System.out.println(i);
+		}
+	}
+	@Test
+	public void move_zero() {
+		int[] input = { 0, 12, 3, 0, 4, 5, 0, 0, 8, 8, 9 };
+		int count = 0;
+		for (int i = 0; i < input.length; i++) {
+			if (input[i] != 0) {
+				input[count++] = input[i];
+			}
+		}
+		while (count < input.length) {
+			input[count++] = 0;
+		}
+		for (int i : input) {
+			System.out.println(i);
+		}
+	}
+}
+40.pgm to count which element is there odd number of times
+public class Odd_Count_Element {
+	@Test
+	public void test1() {
+		int[] a = { 10, 20, 12, 23, 20, 12, 23, 10, 10 };
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for (int i = 0; i < a.length; i++) {
+			if (map.containsKey(a[i])) {
+				map.put(a[i], map.get(a[i]) + 1);
+			} else {
+				map.put(a[i], 1);
+			}
+		}
+
+		Set<Entry<Integer, Integer>> s = map.entrySet();
+		for (Entry<Integer, Integer> e : s) {
+			if (e.getValue() % 2 != 0) {
+				System.out.println(e.getKey() + " is repeated odd number of times");
+			}
+		}
+	}
+	@Test
+	public void test2() {
+		int[] a = { 10, 20, 12, 23, 20, 12, 23, 10, 10 };
+		int result = 0;
+		for (int i = 0; i < a.length; i++) {
+			result = result ^ a[i];
+		}
+		System.out.println("Repeated Element is " + result);
+	}
+}
+41.Reverse an array
+package array_examples;
+public class Reverse_An_Array {
+	public static void main(String[] args) {
+		int[] arr = { 10, 25, 45, 78, 45, 87, 45, 50 };
+		int temp = 0;
+		for (int i = 0; i < arr.length / 2; i++) {
+			temp = arr[i];
+			arr[i] = arr[arr.length - 1 - i];
+			arr[arr.length - 1 - i] = temp;
+		}
+		for (int i : arr) {
+			System.out.println(i);
+		}
+	}
+}
+42.Find Second Largest
+package array_examples;
+import org.testng.annotations.Test;
+public class Second_largest {
+	@Test
+	public void test1() {
+		int[] input = { 45, 51, 28, 75, 49, 42, 42, 75, 50 };
+		int f_max = input[0];
+		int s_max = input[1];
+		for (int i = 2; i < input.length; i++) {
+			if (input[i] > f_max) {
+				s_max = f_max;
+				f_max = input[i];
+			} else if (input[i] < f_max && input[i] > s_max) {
+				s_max = input[i];
+			}
+		}
+		System.out.println("Second Largest is " + s_max);
+	}
+}
+43.Sub Array program
+package array_examples;
+public class Sub_array {
+	public static void main(String[] args) {
+		// int[] arr = { 12, 5, 31, 9, 21, 8 };int num = 45;//output=Sub Array
+		// is {5,31,9}
+		// int[] arr = { 42, 15, 12, 8, 6, 32 };int num = 26;//output={12,8,6}
+		// int[] arr = { 12, 5, 31, 13, 21, 8 };int num = 49;//output={5 31 13}
+		int[] arr = { 15, 51, 7, 81, 5, 11, 25 };
+		int num = 41;// output={5,11,25}
+		int[] sub_arr = sub_array(arr, num);
+		/*System.out.print("Sub Array is {" + arr[sub_arr[0]]);
+		for (int i = sub_arr[0] + 1; i <= sub_arr[1]; i++) {
+			System.out.print("," + arr[i]);
+		}
+		System.out.print("}");*/
+	}
+	public static int[] sub_array(int[] arr, int num) {
+		int sum = 0;
+		boolean flag = false;
+		int[] sub_arr = new int[2];
+		for (int i = 0; i < arr.length; i++) {
+			sum = arr[i];
+			for (int j = i + 1; j < arr.length; j++) {
+				sum = sum + arr[j];
+				if (sum == num) {
+					sub_arr[0] = i;
+					sub_arr[1] = j;
+					flag = true;
+					for (int k = i; k <= j; k++) {
+						System.out.print(arr[k] + " ");
+					}
+					break;
+				} else if (sum > num) {
+					break;
+				}
+			}
+			if (flag == true) {
+				break;
+			}
+		}
+		return sub_arr;
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
