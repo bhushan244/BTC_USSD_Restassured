@@ -14,7 +14,7 @@ public class Add_Num {
 			for (int j = i + 1; j < arr.length; j++) {
 				if (i != j && (arr[i] + arr[j] == sum)) {
 					System.out.println(arr[i] + " + " + arr[j] + " = " + (arr[i] + arr[j]));
-					System.out.println("add_num");
+					System.out.println("add_num1");
 				}
 			}
 		}
